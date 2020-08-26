@@ -1,5 +1,67 @@
+/* GENERAL RULES */
+* {
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+
 body {
 
+  /* debug */
   background-color: purple;
-  
+
+}
+
+/* CONTAINER RULES */
+.container {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+
+  margin-top: 100px;
+
+}
+
+/* TITLE */
+.container h1 {
+
+  font-size: 60px;
+
+  text-transform: uppercase;
+
+  color: white;
+
+}
+
+/* LIST */
+.container ul {
+
+  margin-top: 40px;
+
+}
+
+/* ELEMENT LIST */
+.container ul li {
+
+  font-size: 35px;
+
+  margin-top: 20px;
+
+  color: white;
+
+}
+
+/* DELETE */
+.container ul li .fas {
+
+  cursor: pointer;
+
 }
