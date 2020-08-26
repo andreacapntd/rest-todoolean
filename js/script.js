@@ -5,8 +5,9 @@ function getReadTasks() {
     url: 'http://157.230.17.132:3002/todos',
     method: 'GET',
     success: function(data) {
-      console.log('data', data);
+
       getPrintTasks(data);
+      
     },
     error: function(err) {
       console.log('err', err);
@@ -26,8 +27,8 @@ function getPrintTasks(tasks) {
     target.append(task.text);
 
   }
-
 };
+
 
 
 
