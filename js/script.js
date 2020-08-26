@@ -1,3 +1,48 @@
+function  getAddTaskListener() {
+  var btn = $('#btn');
+  btn.click(getAddTask);
+}
+
+function getAddTask() {
+
+  var text = $('#form').val();
+
+
+  $.ajax({
+
+    url: 'http://157.230.17.132:3002/todos',
+    method: 'POST',
+    data: {
+
+      'text': text
+    },
+    success: function (data) {
+      getReadTasks();
+    },
+    error: function(err) {
+
+      console.log('err', err);
+    }
+  });
+
+}
+
+
+
+
+
+function getDeleteTaskListener() {
+
+  $(document).on('click', '.fas', getDeleteTask);
+
+}
+
+function getDeleteTask() {
+  var add = $(this);
+
+
+}
+
 function getReadTasks() {
 
   $.ajax({
@@ -7,7 +52,7 @@ function getReadTasks() {
     success: function(data) {
 
       getPrintTasks(data);
-      
+
     },
     error: function(err) {
       console.log('err', err);
@@ -36,6 +81,7 @@ function getPrintTasks(tasks) {
 function init() {
 
   getReadTasks();
+  getAddTaskListener();
 
 }
 
