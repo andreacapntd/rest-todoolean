@@ -1,62 +1,3 @@
-function  getAddTaskListener() {
-  var btn = $('#btn');
-  btn.click(getAddTask);
-}
-
-function getAddTask() {
-
-  var text = $('#form').val();
-
-  $.ajax({
-
-    url: 'http://157.230.17.132:3002/todos',
-    method: 'POST',
-    data: {
-
-      'text': text
-    },
-    success: function (data) {
-      getReadTasks();
-    },
-    error: function(err) {
-
-      console.log('err', err);
-    }
-  });
-
-}
-
-
-
-
-
-function getDeleteTaskListener() {
-
-  $(document).on('click', '.fas', getDeleteTask);
-
-}
-
-function getDeleteTask() {
-  var button = $(this);
-  var id = button.data('id');
-  console.log(id);
-
-  $.ajax({
-
-    url: `http://157.230.17.132:3002/todos/${id}`,
-    method: 'DELETE',
-    success: function (data) {
-      getReadTasks();
-    },
-    error: function(err) {
-
-      console.log('err', err);
-    }
-  });
-
-
-}
-
 function getReadTasks() {
 
   $.ajax({
@@ -69,7 +10,9 @@ function getReadTasks() {
 
     },
     error: function(err) {
+
       console.log('err', err);
+
     }
   });
 }
@@ -90,8 +33,66 @@ function getPrintTasks(tasks) {
 };
 
 
+function  getAddTaskListener() {
 
+  var btn = $('#btn');
+  btn.click(getAddTask);
 
+}
+
+function getAddTask() {
+
+  var text = $('#form').val();
+
+  $.ajax({
+
+    url: 'http://157.230.17.132:3002/todos',
+    method: 'POST',
+    data: {
+
+      'text': text
+    },
+    success: function (data) {
+
+      getReadTasks();
+
+    },
+    error: function(err) {
+
+      console.log('err', err);
+
+    }
+  });
+
+}
+
+function getDeleteTaskListener() {
+
+  $(document).on('click', '.fas', getDeleteTask);
+
+}
+
+function getDeleteTask() {
+
+  var button = $(this);
+  var id = button.data('id');
+
+  $.ajax({
+
+    url: `http://157.230.17.132:3002/todos/${id}`,
+    method: 'DELETE',
+    success: function (data) {
+
+      getReadTasks();
+
+    },
+    error: function(err) {
+
+      console.log('err', err);
+
+    }
+  });
+}
 
 function init() {
 
@@ -100,7 +101,5 @@ function init() {
   getDeleteTaskListener();
 
 }
-
-
 
 $(document).ready(init);
