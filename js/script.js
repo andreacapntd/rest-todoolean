@@ -7,7 +7,6 @@ function getAddTask() {
 
   var text = $('#form').val();
 
-
   $.ajax({
 
     url: 'http://157.230.17.132:3002/todos',
@@ -38,7 +37,22 @@ function getDeleteTaskListener() {
 }
 
 function getDeleteTask() {
-  var add = $(this);
+  var button = $(this);
+  var id = button.data('id');
+  console.log(id);
+
+  $.ajax({
+
+    url: `http://157.230.17.132:3002/todos/${id}`,
+    method: 'DELETE',
+    success: function (data) {
+      getReadTasks();
+    },
+    error: function(err) {
+
+      console.log('err', err);
+    }
+  });
 
 
 }
@@ -63,12 +77,13 @@ function getReadTasks() {
 function getPrintTasks(tasks) {
 
   var target = $('#to_do_list');
+  target.text('');
 
   for (var i = 0; i < tasks.length; i++) {
 
     var task = tasks[i];
     var text = task.text;
-    task.text = `<li> <span> ${text} </span> <span> <i class="fas fa-trash-alt"></i> </span> </li> `
+    task.text = `<li> <span> ${text} </span> <span> <i data-id='${task.id}' class="fas fa-trash-alt"></i> </span> </li> `
     target.append(task.text);
 
   }
@@ -82,6 +97,7 @@ function init() {
 
   getReadTasks();
   getAddTaskListener();
+  getDeleteTaskListener();
 
 }
 
