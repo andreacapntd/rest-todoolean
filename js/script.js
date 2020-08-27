@@ -41,8 +41,9 @@ function  getAddTaskListener() {
 }
 
 function getAddTask() {
-
-  var text = $('#form').val();
+  var target = $('#form');
+  var text = target.val();
+  target.val('');
 
   $.ajax({
 
